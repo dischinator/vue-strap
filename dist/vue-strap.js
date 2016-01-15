@@ -4188,6 +4188,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    limit: {
 	      type: Number,
 	      default: 1024
+	    },
+	    closeOnSelect: { // only works when multiple==false
+	      type: Boolean,
+	      default: false
 	    }
 	  },
 	  ready: function ready() {
@@ -4330,6 +4334,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (index === -1) this.value.push(v);else this.value.$remove(v);
 	      } else {
 	        this.value = v;
+	        if (this.closeOnSelect) {
+	          this.toggleDropdown();
+	        }
 	      }
 	    },
 	    toggleDropdown: function toggleDropdown() {

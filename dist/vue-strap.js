@@ -2615,7 +2615,50 @@ return /******/ (function(modules) { // webpackBootstrap
 	      return format.replace(/yyyy/g, year).replace(/MMMM/g, mouthName).replace(/MMM/g, mouthName.substring(0, 3)).replace(/MM/g, ('0' + month).slice(-2)).replace(/dd/g, ('0' + day).slice(-2)).replace(/yy/g, year).replace(/M(?!a)/g, month).replace(/d/g, day);
 	    },
 	    parse: function parse(str) {
-	      var date = new Date(str);
+	      // construct a Date object based on format and date string
+	      // simply using new Date(str) will break for localized Date formats
+	      // get year
+	      var year, month, day;
+	      var pos = this.format.indexOf('yyyy');
+	      if (pos != -1) {
+	        year = str.substr(pos, 4);
+	      } else {
+	        pos = this.format.indexOf('yy');
+	        if (pos != -1) {
+	          year = str.substr(pos, 2);
+	        } else {
+	          throw 'year not extractable, check date string and format string';
+	        }
+	      }
+	
+	      // get month
+	      pos = this.format.indexOf('MMMM');
+	      if (pos != -1) {
+	        month = str.substr(pos, 4);
+	      } else {
+	        pos = this.format.indexOf('MMM');
+	        if (pos != -1) {
+	          month = str.substr(pos, 3);
+	        } else {
+	          pos = this.format.indexOf('MM');
+	          if (pos != -1) {
+	            month = str.substr(pos, 2);
+	          } else {
+	            throw 'month not extractable, check date string and format string';
+	          }
+	        }
+	      }
+	      month = parseInt(month, 10) - 1;
+	
+	      // get day
+	      pos = this.format.indexOf('dd');
+	      if (pos != -1) {
+	        day = str.substr(pos, 2);
+	      } else {
+	        throw 'day not extractable, check date string and format string';
+	      }
+	
+	      var date = new Date(year, month, day);
 	      return isNaN(date.getFullYear()) ? null : date;
 	    },
 	    getDayCount: function getDayCount(year, month) {

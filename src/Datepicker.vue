@@ -266,6 +266,7 @@ import EventListener from './utils/EventListener.js'
               }
             }
           }
+          month = parseInt(month, 10) -1
 
           // get day
           pos=this.format.indexOf('dd')

@@ -2623,7 +2623,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return str;
 	      } else if (str.length < this.format.length) {
 	        // can not be parsed, assume null
-	        return null;
+	        return new Date();
 	      } else if (str.length > this.format.length) {
 	        // try parse using date
 	        var myDate = new Date(str);

@@ -233,6 +233,17 @@ import EventListener from './utils/EventListener.js'
             .replace(/d/g, day)
         },
         parse(str) {
+          if(typeof str == 'object') {
+            return str
+          } else if(str.length < this.format.length) {
+            // can not be parsed, assume null
+            return null
+          } else if(str.length > this.format.length) {
+            // try parse using date
+            var myDate = new Date(str)
+            return isNaN(myDate.getFullYear()) ? null : myDate
+          }
+
           // construct a Date object based on format and date string
           // simply using new Date(str) will break for localized Date formats
           // get year

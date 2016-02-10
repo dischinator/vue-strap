@@ -80,13 +80,43 @@
       }
     },
     computed: {
-      selectedItems() {
-        let foundItems = []
-        if (this.value.length) {
-          for (let item in this.value) {
-            foundItems.push(this.value[item])
+      selectedItems: function selectedItems() {
+        if (!this.multiple)
+        {
+          if(!this.options.length) {
+            for (var c of this.$children) {
+              if (c.value == this.value) {
+                return c.$els.v.innerText
+              }
+            }
+          } else {
+            for(var i=0; i<this.options.length; i++) {
+              if(this.options[i].value === this.value) {
+                return this.options[i].label;
+              }
+            }
           }
-          return foundItems.join(', ')
+          return ""
+        }
+        else
+        {
+          if (!this.options.length){
+            var r=[]
+            for(var c of this.$children){
+              if(this.value.indexOf(c.value)!==-1){
+                r.push(c.$els.v.innerText)
+              }
+            }
+            return r.join(',');
+          }else{
+            // we were given bunch of options, so pluck them out to display
+            var foundItems = [];
+            for (var item of this.options){
+              if (this.value.indexOf(item.value) !== -1)
+                foundItems.push(item.label);
+            }
+            return foundItems.join(', ');
+          }
         }
       },
       showPlaceholder() {
@@ -104,20 +134,18 @@
     },
     methods: {
       select(v) {
-          if (this.value.indexOf(v) === -1) {
-            if (this.multiple) {
-              this.value.push(v)
-            } else {
-              this.value = [v]
-            }
-          } else {
-            if (this.multiple) {
-              this.value.$remove(v)
-            }
-          }
-          if (this.closeOnSelect) {
+        if(this.multiple!=false){
+          var index = this.value.indexOf(v);
+          if (index === -1)
+            this.value.push(v);
+          else
+            this.value.$remove(v)
+        }else{
+          this.value=v
+          if(this.closeOnSelect) {
             this.toggleDropdown()
           }
+        }
       },
       toggleDropdown() {
         this.show = !this.show

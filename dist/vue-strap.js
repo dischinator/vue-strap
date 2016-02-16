@@ -4611,21 +4611,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	      default: false
 	    }
 	  },
-	  ready: function ready() {
-	    if (this.value.constructor !== Array) {
-	      if (this.value.length === 0) {
-	        this.value = [];
-	      } else {
-	        this.value = [this.value];
-	      }
-	    } else {
-	      if (!this.multiple && this.value.length > 1) {
-	        this.value = this.value.slice(0, 1);
-	      } else if (this.multiple && this.value.length > this.limit) {
-	        this.value = this.value.slice(0, this.limit);
-	      }
-	    }
-	  },
 	  data: function data() {
 	    return {
 	      searchText: null,

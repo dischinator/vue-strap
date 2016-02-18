@@ -2453,7 +2453,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	
 	// module
-	exports.push([module.id, "div.datepicker > button.close {\n    position: absolute;\n    top: calc(50% - 13px);\n    right: 10px;\n  }\n\n  div.datepicker > button.close {\n    outline: none;\n  }\n\n  div.datepicker > button.close:focus {\n    opacity: .2;\n  }", ""]);
+	exports.push([module.id, "div.datepicker > button.close {\n    position: absolute;\n    top: calc(50% - 13px);\n    right: 10px;\n  }\n\n  div.datepicker > button.close {\n    outline: none;\n    z-index: 2;\n  }\n\n  div.datepicker > button.close:focus {\n    opacity: .2;\n  }", ""]);
 	
 	// exports
 
@@ -2950,6 +2950,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	//   div.datepicker > button.close {
 	//     outline: none;
+	//     z-index: 2;
 	//   }
 
 	//   div.datepicker > button.close:focus {

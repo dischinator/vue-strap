@@ -15,7 +15,7 @@
         </li>
         <li v-for="option in options | filterBy searchText " v-bind:id="option.value" style="position:relative">
           <a @mousedown.prevent="select(option.value)" style="cursor:pointer">
-            {{ option.label }}
+            {{{ option.label }}}
             <span class="glyphicon glyphicon-ok check-mark" v-show="value.indexOf(option.value) !== -1"></span>
           </a>
         </li>

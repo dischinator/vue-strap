@@ -4,8 +4,8 @@
       @click="toggleDropdown"
       @blur="show = (search ? show : false)"
     >
-      <span class="btn-placeholder" v-show="showPlaceholder">{{placeholder}}</span>
-      <span class="btn-content">{{ selectedItems }}</span>
+      <span class="btn-placeholder" v-show="showPlaceholder">{{{placeholder}}}</span>
+      <span class="btn-content">{{{ selectedItems }}}</span>
       <span class="caret"></span>
     </button>
     <ul class="dropdown-menu">

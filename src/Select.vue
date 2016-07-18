@@ -131,6 +131,7 @@
             this.toggleDropdown()
           }
         }
+        this.$dispatch('change', this.value)
       },
       toggleDropdown() {
         this.show = !this.show

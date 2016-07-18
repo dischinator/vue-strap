@@ -74,6 +74,12 @@ Select data : {{arr}}
       <p>Using the property :close-on-select="true" array driven selects will auto-close after selecting an entry.</p>
       <v-select :value.sync="arr2" :options="fruitOptions" :close-on-select="true">
       </v-select>
+
+      <hr />
+      <h4>Dispatch change events</h4>
+      <p>Array driven selects will automagically dispatch @change events updon change.</p>
+      <v-select :value.sync="arr2" :options="fruitOptions" :close-on-select="true" @change="change">
+      </v-select>
     </div>
     <pre><code class="language-markup"><script type="language-mark-up">
 <v-select>
@@ -184,6 +190,11 @@ fruitOptions = [
         multiple: [],
         multipleLimit: [],
         custom: []
+      }
+    },
+    methods: {
+      change (newValue) {
+        alert('new value is: ' + newValue)
       }
     }
   }
